@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial;
+  font-size: 17px;
+}
+
+#myVideo {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%; 
+  min-height: 100%;
+}
+
+.content {
+  position: absolute;
+
+  background: rgba(0, 0, 0, 0.5);
+  color: #f1f1f1;
+  /* width: 100%;
+  padding: 20px; */
+  
+  /* top: 50%; */
+  /* left: 50%; */
+  /* bring your own prefixes */
+  /* transform: translate(-50%, -50%); */
+}
+
+#logoutBtn {
+  width: 200px;
+  font-size: 18px;
+  padding: 10px;
+  border: none;
+  background: #000;
+  color: #fff;
+  cursor: pointer;
+}
+
+#logoutBtn:hover {
+  background: #ddd;
+  color: black;
+}
+
+/* Center the loader */
+#loader {
+  /* position: absolute; */
+  /* left: 50%; */
+  /* top: 50%; */
+  z-index: 1;
+  width: 120px;
+  height: 120px;
+  /* margin: -76px 0 0 -76px; */
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+  display: none;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.content-load{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  width: 100%;
+}
+</style>
+</head>
+<body>
+
+<video autoplay muted loop id="myVideo">
+  <source src="earth.mp4" type="video/mp4">
+  Your browser does not support HTML5 video.
+</video>
+<div class="content-load">
+  
+  <div id= "content" class="content">
+    <h1>Server Earth</h1>
+    <p></p>
+    <button id="logoutBtn" onclick="showLoader('loader', 'content', this)">Logout</button>
+  </div>
+
+  <div id="loader"></div>
+</div>
+
+<script>
+var video = document.getElementById("myVideo");
+var btn = document.getElementById("logoutBtn");
+
+function myFunction() {
+  if (video.paused) {
+    video.play();
+    btn.innerHTML = "Logout";
+  } else {
+    video.pause();
+    btn.innerHTML = "Login";
+  }
+}
+
+function showLoader(id, text, btn) {
+    document.getElementById(id).style.display = 'block';
+    // hide the lorem ipsum text
+    document.getElementById(text).style.display = 'none';
+    // hide the link
+    btn.style.display = 'none';
+    setTimeout(function () {
+      window.location.href ='/login.html'; //relative to
+    }, 3000);
+}
+
+</script>
+
+</body>
+</html>
